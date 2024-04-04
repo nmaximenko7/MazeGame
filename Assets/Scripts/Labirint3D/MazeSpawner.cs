@@ -7,6 +7,10 @@ public class MazeSpawner : MonoBehaviour
 {
     [Header("ќбъект €чейки")]
     public Transform CellPrefab;
+    [Header("‘иниш")]
+    public Transform FinishPrefabTrigger;
+    [Header("»грок")]
+    public Transform PlayerTransform;
 
     [Header("√лобальные и локальные размеры €чейки")]
     [SerializeField] private Vector2 _cellSize;
@@ -33,7 +37,21 @@ public class MazeSpawner : MonoBehaviour
                 cell.WallLeft.SetActive(maze[x, y].WallLeft);
                 cell.WallBottom.SetActive(maze[x, y].WallBottom);
                 cell.Floor.SetActive(maze[x, y].Floor);
+
+                if (maze[x, y].ThisCellRole == CellRole.FINISH)
+                {
+                    Debug.Log(cellTransform.position);
+                    PlaceMazeExitTrigger(cellTransform);
+                }
+                else if (maze[x, y].ThisCellRole == CellRole.START)
+                    PlayerTransform.transform.position = cellTransform.position + new Vector3(0,3,0);
             }
         }
+    }
+    private void PlaceMazeExitTrigger(Transform exitCell)
+    {
+        Debug.Log(exitCell.position);
+        Transform exitTrigger = Instantiate(FinishPrefabTrigger);
+        exitTrigger.transform.position = exitCell.position + new Vector3(0, 2, 0);
     }
 }
