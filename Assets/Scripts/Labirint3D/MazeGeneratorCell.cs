@@ -1,3 +1,4 @@
+
 public class MazeGeneratorCell
 {
     public int X;
@@ -8,6 +9,11 @@ public class MazeGeneratorCell
     public bool Floor = true;
 
     public bool Visited = false;
-
     public int DistanceFromStart;
+
+    public CellRole ThisCellRole = CellRole.MID;
+}
+public enum CellRole
+{
+    START, FINISH, MID
 }
