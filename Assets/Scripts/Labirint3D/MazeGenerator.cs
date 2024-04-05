@@ -92,6 +92,7 @@ public class MazeGenerator
     private void PlaceMazeExit(MazeGeneratorCell[,] maze)
     {
         MazeGeneratorCell firsthest = maze[0, 0];
+        maze[0, 0].ThisCellRole = CellRole.START;
 
         for (int x = 0; x < maze.GetLength(0); x++)
         {
@@ -104,9 +105,25 @@ public class MazeGenerator
             if (maze[0, y].DistanceFromStart > firsthest.DistanceFromStart) firsthest = maze[0, y];
         }
 
-        if (firsthest.X == 0) firsthest.WallLeft = false;
-        else if (firsthest.Y == 0) firsthest.WallBottom = false;
-        else if (firsthest.X == Width - 2) maze[firsthest.X + 1, firsthest.Y].WallLeft = false;
-        else if (firsthest.Y == Height - 2) maze[firsthest.X, firsthest.Y + 1].WallBottom = false;
+        if (firsthest.X == 0)
+        {
+            firsthest.WallLeft = false;
+            firsthest.ThisCellRole = CellRole.FINISH;
+        }
+        else if (firsthest.Y == 0)
+        {
+            firsthest.WallBottom = false;
+            firsthest.ThisCellRole = CellRole.FINISH;
+        }
+        else if (firsthest.X == Width - 2)
+        {
+            maze[firsthest.X + 1, firsthest.Y].WallLeft = false;
+            maze[firsthest.X + 1, firsthest.Y].ThisCellRole = CellRole.FINISH;
+        }
+        else if (firsthest.Y == Height - 2)
+        {
+            maze[firsthest.X, firsthest.Y + 1].WallBottom = false;
+            maze[firsthest.X, firsthest.Y + 1].ThisCellRole = CellRole.FINISH;
+        }
     }
 }
