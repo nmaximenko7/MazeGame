@@ -9,7 +9,7 @@ public class TriggerFinish : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Если да, то выводим сообщение о входе в триггер
+            // пїЅпїЅпїЅпїЅ пїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             Debug.Log("You are win");
 <<<<<<< HEAD
             Application.Quit();
