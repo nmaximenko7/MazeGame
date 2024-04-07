@@ -1,6 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+<<<<<<< HEAD
+=======
+using UnityEditor.PackageManager.UI;
+>>>>>>> c66f5ca348e9b26c3c3e737ad90acc2d58d7c479
 using UnityEngine;
 
 public class TouchControl : MonoBehaviour
