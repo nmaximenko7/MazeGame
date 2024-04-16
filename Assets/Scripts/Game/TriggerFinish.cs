@@ -9,13 +9,9 @@ public class TriggerFinish : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // ���� ��, �� ������� ��������� � ����� � �������
             Debug.Log("You are win");
-<<<<<<< HEAD
             Application.Quit();
-=======
             EditorApplication.isPlaying = false;
->>>>>>> c66f5ca348e9b26c3c3e737ad90acc2d58d7c479
         }
     }
 }

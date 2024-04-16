@@ -2,52 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MazeGenerator
+public abstract class MazeGeneratorBase
 {
-    public int Width;
-    public int Height;
+    //public int Width;
+    //public int Height;
 
-    public MazeGenerator(int width, int height)
-    {
-        Width = width;
-        Height = height;
-    }
+    //public MazeGeneratorBase(int width, int height)
+    //{
+    //    Width = width;
+    //    Height = height;
+    //}
 
-    public MazeGeneratorCell[,] GenerateMaze()
-    {
-        MazeGeneratorCell[,] maze = new MazeGeneratorCell[Width, Height];
-        
-        for (int x = 0; x < maze.GetLength(0); x++)
-        {
-            for (int y = 0; y < maze.GetLength(1); y++)
-            {
-                maze[x, y] = new MazeGeneratorCell { X = x, Y = y };
-            }
-        }
-        for (int x = 0; x < maze.GetLength(0); x++)
-        {
-            maze[x, Height - 1].WallLeft = false;
-            maze[x, Height - 1].Floor = false;
-        }
-        for (int y = 0; y < maze.GetLength(1); y++)
-        {
-            maze[Width - 1, y].WallBottom = false;
-            maze[Width - 1, y].Floor = false;
-        }
-        RemoveWallsWithBacktracker(maze);
-        PlaceMazeExit(maze);
-        return maze;
-    }
+    public abstract CellGeneratorBase[,] GenerateMaze(int width, int height);
 
-    private void RemoveWallsWithBacktracker(MazeGeneratorCell[,] maze)
+    protected void RemoveWalls(CellGeneratorBase[,] maze)
     {
-        MazeGeneratorCell current = maze[0, 0];
+        int Width = maze.GetLength(0);
+        int Height = maze.GetLength(1);
+        CellGeneratorBase current = maze[0, 0];
         current.DistanceFromStart = 0;
         current.Visited = true;
-        Stack<MazeGeneratorCell> stack = new Stack<MazeGeneratorCell>();
+        Stack<CellGeneratorBase> stack = new Stack<CellGeneratorBase>();
         do
         {
-            List<MazeGeneratorCell> unvisitedNeighbours = new List<MazeGeneratorCell>();
+            List<CellGeneratorBase> unvisitedNeighbours = new List<CellGeneratorBase>();
 
             int x = current.X;
             int y = current.Y;
@@ -59,7 +37,7 @@ public class MazeGenerator
 
             if (unvisitedNeighbours.Count > 0)
             {
-                MazeGeneratorCell chosen = unvisitedNeighbours[Random.Range(0, unvisitedNeighbours.Count)];
+                CellGeneratorBase chosen = unvisitedNeighbours[Random.Range(0, unvisitedNeighbours.Count)];
                 RemoveWall(current, chosen);
 
                 chosen.Visited = true;
@@ -75,7 +53,7 @@ public class MazeGenerator
         } while (stack.Count > 0);
     }
 
-    private void RemoveWall(MazeGeneratorCell a, MazeGeneratorCell b)
+    protected void RemoveWall(CellGeneratorBase a, CellGeneratorBase b)
     {
         if (a.X == b.X)
         {
@@ -89,9 +67,11 @@ public class MazeGenerator
         }
     }
 
-    private void PlaceMazeExit(MazeGeneratorCell[,] maze)
+    protected void PlaceMazeExit(CellGeneratorBase[,] maze)
     {
-        MazeGeneratorCell firsthest = maze[0, 0];
+        int Width = maze.GetLength(0);
+        int Height = maze.GetLength(1);
+        CellGeneratorBase firsthest = maze[0, 0];
         maze[0, 0].ThisCellRole = CellRole.START;
 
         for (int x = 0; x < maze.GetLength(0); x++)
@@ -118,12 +98,12 @@ public class MazeGenerator
         else if (firsthest.X == Width - 2)
         {
             maze[firsthest.X + 1, firsthest.Y].WallLeft = false;
-            maze[firsthest.X + 1, firsthest.Y].ThisCellRole = CellRole.FINISH;
+            maze[firsthest.X, firsthest.Y].ThisCellRole = CellRole.FINISH;
         }
         else if (firsthest.Y == Height - 2)
         {
             maze[firsthest.X, firsthest.Y + 1].WallBottom = false;
-            maze[firsthest.X, firsthest.Y + 1].ThisCellRole = CellRole.FINISH;
+            maze[firsthest.X, firsthest.Y].ThisCellRole = CellRole.FINISH;
         }
     }
 }
