@@ -9,8 +9,8 @@ public class TriggerFinish : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // Если да, то выводим сообщение о входе в триггер
             Debug.Log("You are win");
+            Application.Quit();
             EditorApplication.isPlaying = false;
         }
     }
