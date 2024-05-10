@@ -11,7 +11,6 @@ public class TriggerFinish : MonoBehaviour
         {
             Debug.Log("You are win");
             Application.Quit();
-            EditorApplication.isPlaying = false;
         }
     }
 }

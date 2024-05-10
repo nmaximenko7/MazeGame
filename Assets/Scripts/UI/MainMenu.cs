@@ -15,7 +15,7 @@ public class MainMenu : MonoBehaviour
     }
     public void Continue()
     {
-        GetComponent<SceneController>().SwitchToScene(1);
+        GetComponent<SceneController>().SwitchToScene(2);
     }
     public void StartGame()
     {

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.FilePathAttribute;
+
 using UnityEngine.UIElements;
 
 public class MazeSpawner3D : MazeSpawnerBase
@@ -16,6 +16,8 @@ public class MazeSpawner3D : MazeSpawnerBase
     {
         MazeGenerator3D mazeGenerator = MazeGenerator3D.Instance;
         if (!mazeGenerator.IsGenerated()) {
+            _mazeWidth = PlayerPrefs.GetInt("mazeWidth");
+            _mazeHeight = PlayerPrefs.GetInt("mazeHeight");
             mazeGenerator.CurrentMazeData = (CellGenerator3D[,])mazeGenerator.GenerateMaze(_mazeWidth, _mazeHeight);
         }
         SpawnMaze(mazeGenerator);

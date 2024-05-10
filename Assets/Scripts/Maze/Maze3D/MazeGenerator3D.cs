@@ -16,7 +16,6 @@ public class MazeGenerator3D : MazeGeneratorBase
             {
                 _instance = new MazeGenerator3D();
                 Debug.Log("Instanse");
-
             }
             return _instance;
         }
