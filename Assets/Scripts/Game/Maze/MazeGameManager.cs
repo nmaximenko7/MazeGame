@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MazeGameManager : MonoBehaviour, IGameManager
@@ -23,6 +24,11 @@ public class MazeGameManager : MonoBehaviour, IGameManager
     {
         _pauseBtn.SetActive(false);
         _endPanel.SetActive(true);
+        Debug.Log(transform.Find("WinText").name);
+        TextMeshProUGUI winText = transform.Find("WinText").GetComponent<TextMeshProUGUI>();
+        winText.text = "Поздравляю, вы победили в этом чертовом испытании, держите конфетку. Ваш счет: " +
+            ScoreCounter.Instance.Score.ToString();
+        winText.color = Color.white;
         Time.timeScale = 0.0f;
     }
     public void PauseGame()

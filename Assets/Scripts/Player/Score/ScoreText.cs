@@ -14,6 +14,6 @@ public class ScoreText : MonoBehaviour
 
     private void Update()
     {
-        _scoreText.text = ScoreCounter.Instance.Score.ToString();
+        _scoreText.text = "Score: " + ScoreCounter.Instance.Score.ToString();
     }
 }

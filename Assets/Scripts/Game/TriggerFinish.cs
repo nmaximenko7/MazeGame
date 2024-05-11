@@ -5,12 +5,16 @@ using UnityEngine;
 
 public class TriggerFinish : MonoBehaviour
 {
+    private IGameManager gameManager;
+    private void Start()
+    {
+        gameManager = FindAnyObjectByType<MazeGameManager>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("You are win");
-            Application.Quit();
+            gameManager.EndGame();
         }
     }
 }
