@@ -117,10 +117,9 @@ GameObject:
   - component: {fileID: 4043916135329734390}
   - component: {fileID: 6960088103757926235}
   - component: {fileID: 6537627052417109925}
-  - component: {fileID: 5519842448237586089}
-  - component: {fileID: 6840227067457617208}
+  - component: {fileID: 222844607488339631}
   m_Layer: 0
-  m_Name: Entity
+  m_Name: Scrimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,7 +169,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: de8dc6766f0b7974889c7f135c3c50b9, type: 2}
+  - {fileID: 2100000, guid: 50e4d3346a102e04bb7db61dde47b6a0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -215,7 +214,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5519842448237586089
+--- !u!114 &222844607488339631
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -224,22 +223,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2992920679034200081}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5f351ca4b7e10c439abd72c1ba13457, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  materials:
-  - {fileID: 2100000, guid: de8dc6766f0b7974889c7f135c3c50b9, type: 2}
-  - {fileID: 2100000, guid: 3318dceca4db5fd4ab235039153d995f, type: 2}
-  - {fileID: 2100000, guid: f93278ef1ea89034f945c89c9030f5c1, type: 2}
---- !u!114 &6840227067457617208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2992920679034200081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b96e6ad2a3689d94e80a2fd5e41cb5ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 86bd65bbe7f570b40b213d01ff76771b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

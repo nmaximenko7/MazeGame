@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EntityTransform: {fileID: 8311139017048744947, guid: b54322b62b97f23409025360e7766222, type: 3}
+  ScrimerTransform: {fileID: 8311139017048744947, guid: 16dad6283bd5386418d9480fea2c6f1d, type: 3}
   _triggerLeft: {fileID: 4415868161518220161}
   _triggerBottom: {fileID: 4398990327942306876}
 --- !u!114 &7314817634998790669
