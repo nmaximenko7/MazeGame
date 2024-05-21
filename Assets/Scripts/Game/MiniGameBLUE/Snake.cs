@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class Snake : MonoBehaviour
 {
     public Transform segmentPrefab;
     public Vector2Int direction = Vector2Int.right;
-    public float speed = 20f;
+    public float speed = 15f;
     public float speedMultiplier = 1f;
     public int initialSize = 4;
     public bool moveThroughWalls = false;
 
     private List<Transform> segments = new List<Transform>();
-    private Vector2Int input;
     private float nextUpdate;
 
     private void Start()
@@ -20,38 +20,11 @@ public class Snake : MonoBehaviour
         ResetState();
     }
 
-    private void Update()
-    {
-        // Only allow turning up or down while moving in the x-axis
-        if (direction.x != 0f)
-        {
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) {
-                input = Vector2Int.up;
-            } else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) {
-                input = Vector2Int.down;
-            }
-        }
-        // Only allow turning left or right while moving in the y-axis
-        else if (direction.y != 0f)
-        {
-            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
-                input = Vector2Int.right;
-            } else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
-                input = Vector2Int.left;
-            }
-        }
-    }
-
     private void FixedUpdate()
     {
         // Wait until the next update before proceeding
         if (Time.time < nextUpdate) {
             return;
-        }
-
-        // Set the new direction based on the input
-        if (input != Vector2Int.zero) {
-            direction = input;
         }
 
         // Set each segment's position to be the same as the one it follows. We
@@ -73,6 +46,7 @@ public class Snake : MonoBehaviour
 
     public void Grow()
     {
+        ScoreCounter.Instance.Score += 1;
         Transform segment = Instantiate(segmentPrefab);
         segment.position = segments[segments.Count - 1].position;
         segments.Add(segment);

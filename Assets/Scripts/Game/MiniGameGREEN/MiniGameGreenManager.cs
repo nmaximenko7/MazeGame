@@ -3,21 +3,38 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class MazeGameManager : MonoBehaviour, IGameManager
+public class MiniGameGreenManager : MonoBehaviour
 {
+    [SerializeField] private GameObject _startPanel;
     [SerializeField] private GameObject _endPanel;
     [SerializeField] private GameObject _pausePanel;
     [SerializeField] private GameObject _pauseBtn;
-    [SerializeField] private GameObject _winText;
+    [SerializeField] private TextMeshProUGUI _timeRemainingText;
+
+    public float TimeRemaining { get; set; }
+    private float _timeLimit = 60f;
     void Start()
     {
-        StartGame();
+        _startPanel.SetActive(true);
+        _endPanel.SetActive(false);
+        _pauseBtn.SetActive(false);
+        _pausePanel.SetActive(false);
+        TimeRemaining = 0f;
+        Time.timeScale = 0.0f;
+    }
+    private void Update()
+    {
+        if (TimeRemaining > _timeLimit) EndGame();
+        else
+        {
+            TimeRemaining += Time.deltaTime;
+            _timeRemainingText.text = "Time Remaining: " + Mathf.Round(_timeLimit - TimeRemaining).ToString();
+        }
     }
 
     public void StartGame()
     {
-        _endPanel.SetActive(false);
-        _pausePanel.SetActive(false);
+        _startPanel.SetActive(false);
         _pauseBtn.SetActive(true);
         Time.timeScale = 1.0f;
     }
@@ -25,10 +42,6 @@ public class MazeGameManager : MonoBehaviour, IGameManager
     {
         _pauseBtn.SetActive(false);
         _endPanel.SetActive(true);
-        TextMeshProUGUI winText = _endPanel.transform.Find("WinText").GetComponent<TextMeshProUGUI>();
-        winText.text = "Поздравляю, вы победили в этом чертовом испытании, держите конфетку. Ваш счет: " +
-            ScoreCounter.Instance.Score.ToString();
-        winText.color = Color.white;
         Time.timeScale = 0.0f;
     }
     public void PauseGame()
@@ -42,11 +55,5 @@ public class MazeGameManager : MonoBehaviour, IGameManager
         _pausePanel.SetActive(false);
         _pauseBtn.SetActive(true);
         Time.timeScale = 1.0f;
-    }
-
-    public void NewGame()
-    {
-        MazeGenerator3D.Instance.CurrentMazeData = null;
-        GetComponent<SceneController>().SwitchToScene(1);
     }
 }

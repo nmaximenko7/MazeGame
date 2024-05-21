@@ -671,8 +671,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1264680240}
   - {fileID: 402311217}
+  - {fileID: 1264680240}
   m_Father: {fileID: 864262904}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1328,6 +1328,7 @@ MonoBehaviour:
   _endPanel: {fileID: 430420400}
   _pausePanel: {fileID: 578586092}
   _pauseBtn: {fileID: 346081557}
+  _winText: {fileID: 402311216}
 --- !u!1 &906275013
 GameObject:
   m_ObjectHideFlags: 0
@@ -1644,7 +1645,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1264680242}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 864262905}
+        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
+        m_MethodName: SwitchToScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1264680242
 MonoBehaviour:
   m_ObjectHideFlags: 0
