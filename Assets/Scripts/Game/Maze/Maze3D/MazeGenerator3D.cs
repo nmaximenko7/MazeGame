@@ -58,11 +58,11 @@ public class MazeGenerator3D : MazeGeneratorBase
             for (int y = 0; y < maze.GetLength(1); y++)
             {
                 if (x == 0 && y == 0 || maze[x, y].WallBottom && maze[x, y].WallLeft) { continue; }
-                if (Random.Range(0f, 1f) < 0.2f)
+                if (Random.Range(0f, 1f) < 0.25f)
                 {
                     if (!maze[x, y].WallLeft) maze[x, y].TriggerLeft = true;
                     if (!maze[x, y].WallBottom) maze[x, y].TriggerBottom = true;
-                    if (Random.Range(0f, 1f) < 0.3f) maze[x, y].ThisCellRole = CellRole.ENTITY;
+                    if (Random.Range(0f, 1f) < 0.4f) maze[x, y].ThisCellRole = CellRole.ENTITY;
                     else maze[x, y].ThisCellRole = CellRole.SCRIMER;
                 }
                 else
