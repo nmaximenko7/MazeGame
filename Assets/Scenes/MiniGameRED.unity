@@ -4518,6 +4518,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 519420034}
+    - target: {fileID: 3741724457813908266, guid: 826441f6cb1183d4d86b41bd175b66f1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ResumeGame
+      objectReference: {fileID: 0}
     - target: {fileID: 5206701583736129937, guid: 826441f6cb1183d4d86b41bd175b66f1, type: 3}
       propertyPath: m_Name
       value: PausePanel
